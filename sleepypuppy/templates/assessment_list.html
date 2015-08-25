@@ -1,0 +1,355 @@
+{% extends 'admin/master.html' %}
+{% import 'admin/lib.html' as lib with context %}
+{% import 'admin/static.html' as admin_static with context%}
+{% import 'admin/model/layout.html' as model_layout with context %}
+{% import 'admin/actions.html' as actionlib with context %}
+
+{% block head %}
+<style>
+.table-striped tbody tr.highlight td {
+    background-color: #FFFACD;
+}
+</style>
+    {{ super() }}
+    {{ lib.form_css() }}
+{% endblock %}
+
+{% block body %}
+    {% block model_menu_bar %}
+    <ul class="nav nav-tabs actions-nav">
+        <li class="active">
+            <a href="javascript:void(0)">{{ _gettext('List') }}{% if count %} ({{ count }}){% endif %}</a>
+        </li>
+        {% if admin_view.can_create %}
+        <li>
+            <a href="{{ get_url('.create_view', url=return_url) }}" title="{{ _gettext('Create new record') }}">{{ _gettext('Create') }}</a>
+        </li>
+        {% endif %}
+
+        {% if filters %}
+        <li class="dropdown">
+            {{ model_layout.filter_options() }}
+        </li>
+        {% endif %}
+
+        {% if actions %}
+        <li class="dropdown">
+            {{ actionlib.dropdown(actions) }}
+        </li>
+        {% endif %}
+
+        {% if search_supported %}
+        <li>
+            {{ model_layout.search_form() }}
+        </li>
+        {% endif %}
+    </ul>
+    {% endblock %}
+
+    {% if filters %}
+        {{ model_layout.filter_form() }}
+        <div class="clearfix"></div>
+    {% endif %}
+
+    {% block model_list_table %}
+    <table class="table table-striped table-bordered table-hover model-list" id="assessments">
+        <thead>
+            <tr>
+                {% block list_header scoped %}
+                    {% if actions %}
+                    <th class="list-checkbox-column">
+                        <input type="checkbox" name="rowtoggle" class="action-rowtoggle" title="{{ _gettext('Select all records') }}" />
+                    </th>
+                    {% endif %}
+                    {% block list_row_actions_header %}
+                    <th class="col-md-1">&nbsp;</th>
+                    {% endblock %}
+                    {% set column = 0 %}
+                    {% for c, name in list_columns %}
+                    <th class="column-header col-{{c}}">
+                        {% if admin_view.is_sortable(c) %}
+                            {% if sort_column == column %}
+                                <a href="{{ sort_url(column, True) }}" title="{{ _gettext('Sort by %(name)s', name=name) }}">
+                                    {{ name }}
+                                    {% if sort_desc %}
+                                        <span class="fa fa-chevron-up glyphicon glyphicon-chevron-up"></span>
+                                    {% else %}
+                                        <span class="fa fa-chevron-down glyphicon glyphicon-chevron-down"></span>
+                                    {% endif %}
+                                </a>
+                            {% else %}
+                                <a href="{{ sort_url(column) }}" title="{{ _gettext('Sort by %(name)s', name=name) }}">{{ name }}</a>
+                            {% endif %}
+                        {% else %}
+                            {{ name }}
+                        {% endif %}
+                        {% if admin_view.column_descriptions.get(c) %}
+                            <a class="fa fa-question-circle glyphicon glyphicon-question-sign"
+                               title="{{ admin_view.column_descriptions[c] }}"
+                               href="javascript:void(0)" data-role="tooltip"
+                            ></a>
+                        {% endif %}
+                    </th>
+                    {% set column = column + 1 %}
+                    {% endfor %}
+                {% endblock %}
+            </tr>
+        </thead>
+        {% for row in data %}
+        {% if loop.index0 == 0 %}
+        <tr class="highlight">
+        {% else %}
+        <tr>
+        {% endif %}
+            {% block list_row scoped %}
+                {% if actions %}
+                <td>
+                    <input type="checkbox" name="rowid" class="action-checkbox" value="{{ get_pk_value(row) }}" title="{{ _gettext('Select record') }}" />
+                </td>
+                {% endif %}
+                {% block list_row_actions_column scoped %}
+                <td>
+                    {% block list_row_actions scoped %}
+                        {%- if admin_view.can_edit -%}
+                        <a class="icon" href="{{ get_url('.edit_view', id=get_pk_value(row), url=return_url) }}" title="{{ _gettext('Edit record') }}">
+                            <span class="fa fa-pencil glyphicon glyphicon-pencil"></span>
+                        </a>
+                        {%- endif -%}
+                        {%- if admin_view.can_delete -%}
+                        <form class="icon" method="POST" action="{{ get_url('.delete_view') }}">
+                            {{ delete_form.id(value=get_pk_value(row)) }}
+                            {{ delete_form.url(value=return_url) }}
+                            {% if delete_form.csrf_token %}
+                            {{ delete_form.csrf_token }}
+                            {% elif csrf_token %}
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                            {% endif %}
+                            <button onclick="return confirm('{{ _gettext('Are you sure you want to delete this record?') }}');" title="Delete record">
+                                <span class="fa fa-trash glyphicon glyphicon-trash"></span>
+                            </button>
+                        </form>
+                        {%- endif -%}
+                    {% endblock %}
+                </td>
+                {% endblock %}
+                {% set counter = 0 -%}
+                {% for c, name in list_columns %}
+                    {% if c == 'name' and counter == 0 %}
+                    <td class="col-{{row.name.split()[0]}}-assessment-{{row.id}} highlight" style="cursor: pointer;">
+                    {% set counter = counter + 1 %}
+                    {% else %}
+                    <td class="col-{{row.name.split()[0]}}-assessment-{{row.id}}" style="cursor: pointer;">
+                    {% endif %}
+                    <!-- sbehrens removed
+                    {% if admin_view.is_editable(c) %}
+
+                        {% if form.csrf_token %}
+                        {{ form[c](pk=get_pk_value(row), value=get_value(row, c), csrf=form.csrf_token._value()) }}
+                        {% else %}
+                        {{ form[c](pk=get_pk_value(row), value=get_value(row, c)) }}
+                        {% endif %}
+                    {% else %} -->
+                {% if c == 'captured' and get_value(row, c) != "None" %}
+                        <!-- <a href="/admin/capture/{{row.id}}">Yes</a> -->
+                Yes
+                {%- elif c == 'captured' and get_value(row, c) == "None" -%}
+                    No
+                {%- else -%}
+                    {{ get_value(row, c) }}
+                {% endif %}
+                    {% endif %}
+                    </td>
+                {% endfor %}
+            {% endblock %}
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="999">
+                {% block empty_list_message %}
+                <div class="text-center">
+                    {{ admin_view.get_empty_list_message() }}
+                </div>
+                {% endblock %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <br>
+    <br>
+
+    <table class="table table-striped table-bordered table-hover model-list" id="payloads">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Capture</th>
+        <th>Generic Collector</th>
+        <th>Access Log</th>
+        <th>Payload</th>
+    </tr>
+    </thead>
+    <tbody>
+
+       {% for key, value in get_payloads().iteritems() %}
+       <tr>
+       <td class="col-payload-{{key}}">
+       {{ key }}
+       </td>
+       <td class="col-capture-{{key}}">
+
+       </td>
+       <td class="col-collector-{{key}}">
+       </td>
+       <td class="col-accesslog-{{key}}">
+       </td>
+       <td class="col-payload-ignore">
+       {{ value }}
+       </td>
+       </tr>
+       {% endfor %}
+
+    </tbody>
+    </table>
+
+    {% block list_pager %}
+    {% if num_pages is not none %}
+    {{ lib.pager(page, num_pages, pager_url) }}
+    {% else %}
+    {{ lib.simple_pager(page, data|length == page_size, pager_url) }}
+    {% endif %}
+    {% endblock %}
+    {% endblock %}
+
+    {{ actionlib.form(actions, get_url('.action_view')) }}
+{% endblock %}
+
+{% block tail %}
+    {{ super() }}
+    <script src="{{ admin_static.url(filename='admin/js/filters-1.0.0.js') }}"></script>
+
+    {{ lib.form_js() }}
+
+    {{ actionlib.script(_gettext('Please select at least one record.'),
+                        actions,
+                        actions_confirmation) }}
+<script>
+var capture_data = {{get_captures('capture')|safe}}
+var collector_data = {{get_captures('collector')|safe}}
+var access_log_data = {{get_captures('access_log')|safe}}
+</script>
+
+<script>
+$('#assessments').on('click', 'tbody tr', function(event) {
+    $(this).addClass('highlight').siblings().removeClass('highlight');
+    var assessment1 = $($(".highlight td")[2]).attr("class").split(' ')[0].split('-')[3];
+    var assessment_name =$($(".highlight td")[2]).attr("class").split(' ')[0].split('-')[1];
+    $("#payloads tbody tr td").each(function(index, value) {
+        capture = $(this).clone(true);
+        collector = $(this).clone(true);
+        access_log = $(this).clone(true);
+        text = $(this).clone(true);
+
+        if ($(collector)[0].className.indexOf("collector") !== -1){
+            var collector_id = $(collector)[0].className.split('-')[2];
+
+            var total_collections = collector_data[assessment1][collector_id];
+
+            $(this).html('<a target="_blank" href="/admin/genericcollector/?flt2_14=' + collector_id + '&flt3_7=' + assessment_name + '">' + total_collections + '</a>');
+        }
+        if ($(access_log)[0].className.indexOf("accesslog") !== -1){
+            var access_log_id = $(access_log)[0].className.split('-')[2];
+            var total_access_logs = collector_data[assessment1][access_log_id];
+
+            $(this).html('<a target="_blank" href="/admin/accesslog/?flt1_7=' + access_log_id + '&flt2_14=' + assessment_name + '">' + total_access_logs + '</a>');
+        }
+        if ($(capture)[0].className.indexOf("capture") !== -1){
+            var capture_id = $(capture)[0].className.split('-')[2];
+            var total_captures = capture_data[assessment1][capture_id];
+
+            $(this).html('<a target="_blank" href="/admin/capture/?flt1_7=' + capture_id + '&flt2_14=' + assessment_name + '">' + total_captures + '</a>');
+
+        }
+
+        if ($(this)[0].className.indexOf("ignore") != -1) {
+            var text = $(this).text();
+            text = text.replace(/&a=\d+/, "&a=" + assessment1);
+            $(this).text(text);
+        }
+    });
+
+});
+
+var text = "";
+$('#assessments').on('change', function(){
+    if($('#assessments').length) {
+    } else {
+    $("#payloads").addClass('hidden')
+    }
+});
+$( document ).ready(function() {
+    if ($('#assessments').text().indexOf("There are no items in the table.") === -1) {
+        $("#payloads").removeClass('hidden')
+        var assessment = $($(".highlight td")[2]).attr("class").split(' ')[0].split('-')[3];
+        var assessment_name =$($(".highlight td")[2]).attr("class").split(' ')[0].split('-')[1];
+        var payloads = Array();
+        $("#payloads tbody tr td").each(function(index, value) {
+            capture = $(this).clone(true);
+            collector = $(this).clone(true);
+            access_log = $(this).clone(true);
+            text = $(this).clone(true);
+
+            if ($(collector)[0].className.indexOf("collector") !== -1){
+                var collector_id = $(collector)[0].className.split('-')[2];
+                var total_collections = collector_data[assessment][collector_id];
+
+                $(this).html('<a target="_blank" href="/admin/genericcollector/?flt2_14=' + collector_id + '&flt3_7=' + assessment_name + '">' + total_collections + '</a>');
+            }
+            if ($(access_log)[0].className.indexOf("accesslog") !== -1){
+                var access_log_id = $(access_log)[0].className.split('-')[2];
+                var total_access_logs = collector_data[assessment][access_log_id];
+
+
+                $(this).html('<a target="_blank" href="/admin/accesslog/?flt1_7=' + access_log_id + '&flt2_14=' + assessment_name + '">' + total_access_logs + '</a>');
+            }
+
+            if ($(capture)[0].className.indexOf("capture") !== -1){
+
+                var capture_id = $(capture)[0].className.split('-')[2];
+                var total_captures = capture_data[assessment][capture_id];
+
+                $(this).html('<a target="_blank" href="/admin/capture/?flt1_7=' + capture_id + '&flt2_14=' + assessment_name + '">' + total_captures + '</a>');
+
+            }
+            if ($(this)[0].className.indexOf("ignore") === -1) {
+                payloads.push($(this)[0].className.split('-')[2]);
+            }
+            if ($(this)[0].className.indexOf("ignore") != -1) {
+                var text = $(this).text();
+                text = text.replace("$1", "//{{ get_hostname() }}/x?u=" + payloads.pop() + "&a=" + assessment);
+                $(this).text(text);
+            }
+        });
+
+    } else {
+        $("#payloads").addClass('hidden')
+    }
+
+});
+
+</script>
+    <script language="javascript">
+        (function($) {
+            $('[data-role=tooltip]').tooltip({
+                html: true,
+                placement: 'bottom'
+            });
+            {% if filter_groups %}
+                var filter = new AdminFilters(
+                    '#filter_form', '.field-filters',
+                    {{ filter_groups|tojson|safe }},
+                    {{ active_filters|tojson|safe }}
+                );
+            {% endif %}
+        })(jQuery);
+    </script>
+{% endblock %}
