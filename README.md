@@ -29,6 +29,8 @@ Sleepy Puppy exposes an API for users who may want to develop plugins for scanne
 
 [API Documentation](https://github.com/sbehrens/sleepy-puppy/wiki/API)
 
+#Getting Started#
+Sleepy Puppy has a Docker composition which includes Nginx, PostGres, and Sleepy-Puppy.  The [Docker](https://github.com/sbehrens/sleepy-puppy/wiki/docker) guide is the fastest way to try out Sleepy Puppy.  The [setup guide](https://github.com/sbehrens/sleepy-puppy/wiki/setup) has examples on how to setup Sleepy Puppy for test as well as as more production setup using SSL and Nginx.  
 
 #Release History#
 V0.3 "Netflix OSS Release"
