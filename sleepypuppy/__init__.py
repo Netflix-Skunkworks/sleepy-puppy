@@ -108,7 +108,7 @@ def init_login():
 from admin.admin.views import MyAdminIndexView, AdministratorView
 flask_admin = Admin(app,
                     'Sleepy Puppy',
-                    index_view=MyAdminIndexView(),
+                    index_view=MyAdminIndexView(url='/'),
                     base_template='admin/base.html',
                     template_mode='bootstrap3')
 
@@ -171,12 +171,6 @@ def after_request(response):
     response.headers.add('Access-Control-Allow-Origin', '*')
     response.headers.add('Access-Control-Allow-Methods', 'GET,POST')
     return response
-
-
-# Default route redirect to admin page
-@app.route('/')
-def index():
-    return redirect('/admin', 302)
 
 
 # # Route to serve static asset files via Flask
