@@ -36,7 +36,7 @@ LOG_LEVEL = "DEBUG"
 LOG_FILE = "sleepypuppy.log"
 
 # Callback configuration settings for JS captures
-HOSTNAME = '127.0.0.1:8000'
+HOSTNAME = os.getenv('host', '127.0.0.1:8000')
 # for getting the JS file.
 CALLBACK_HOSTNAME = HOSTNAME
 # http for local dev, https for deploy
