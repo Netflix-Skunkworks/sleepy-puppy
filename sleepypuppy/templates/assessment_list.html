@@ -302,14 +302,14 @@ $( document ).ready(function() {
                 var collector_id = $(collector)[0].className.split('-')[2];
                 var total_collections = collector_data[assessment][collector_id];
 
-                $(this).html('<a target="_blank" href="/admin/genericcollector/?flt2_14=' + collector_id + '&flt3_7=' + assessment_name + '">' + total_collections + '</a>');
+                $(this).html('<a target="_blank" href="/genericcollector/?flt2_14=' + collector_id + '&flt3_7=' + assessment_name + '">' + total_collections + '</a>');
             }
             if ($(access_log)[0].className.indexOf("accesslog") !== -1){
                 var access_log_id = $(access_log)[0].className.split('-')[2];
                 var total_access_logs = collector_data[assessment][access_log_id];
 
 
-                $(this).html('<a target="_blank" href="/admin/accesslog/?flt1_7=' + access_log_id + '&flt2_14=' + assessment_name + '">' + total_access_logs + '</a>');
+                $(this).html('<a target="_blank" href="/accesslog/?flt1_7=' + access_log_id + '&flt2_14=' + assessment_name + '">' + total_access_logs + '</a>');
             }
 
             if ($(capture)[0].className.indexOf("capture") !== -1){
@@ -317,7 +317,7 @@ $( document ).ready(function() {
                 var capture_id = $(capture)[0].className.split('-')[2];
                 var total_captures = capture_data[assessment][capture_id];
 
-                $(this).html('<a target="_blank" href="/admin/capture/?flt1_7=' + capture_id + '&flt2_14=' + assessment_name + '">' + total_captures + '</a>');
+                $(this).html('<a target="_blank" href="/capture/?flt1_7=' + capture_id + '&flt2_14=' + assessment_name + '">' + total_captures + '</a>');
 
             }
             if ($(this)[0].className.indexOf("ignore") === -1) {
