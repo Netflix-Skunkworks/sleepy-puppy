@@ -27,10 +27,10 @@ Sleepy Puppy also supports email notifications for captures received for specifi
 
 Sleepy Puppy exposes an API for users who may want to develop plugins for scanners such as Burp or Zap.
 
-[API Documentation](https://github.com/sbehrens/sleepy-puppy/wiki/API)
+[API Documentation](https://github.com/netflix/sleepy-puppy/wiki/API)
 
 #Getting Started#
-Sleepy Puppy has a Docker composition which includes Nginx, PostGres, and Sleepy-Puppy.  The [Docker](https://github.com/sbehrens/sleepy-puppy/wiki/docker) guide is the fastest way to try out Sleepy Puppy.  The [setup guide](https://github.com/sbehrens/sleepy-puppy/wiki/setup) has examples on how to setup Sleepy Puppy for test as well as as more production setup using SSL and Nginx.  
+Sleepy Puppy has a Docker composition which includes Nginx, PostGres, and Sleepy-Puppy.  The [Docker](https://github.com/netflix/sleepy-puppy/wiki/docker) guide is the fastest way to try out Sleepy Puppy.  The [setup guide](https://github.com/netflix/sleepy-puppy/wiki/setup) has examples on how to setup Sleepy Puppy for test as well as as more production setup using SSL and Nginx.  
 
 #Release History#
 V0.3 "Netflix OSS Release" - 8/31/2015
@@ -63,4 +63,4 @@ V0.1 Alpha - 2/26/2014
 * Initial release
 
 #Documentation#
-Documentation is maintained in the Github [Wiki](https://github.com/sbehrens/sleepy-puppy/wiki)
+Documentation is maintained in the Github [Wiki](https://github.com/netflix/sleepy-puppy/wiki)
