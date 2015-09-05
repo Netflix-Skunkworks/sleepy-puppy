@@ -109,9 +109,9 @@ class AssessmentView(Resource):
         e = Assessment.query.filter(Assessment.id == id).first()
         if e is not None:
             e.name = args["name"]
-            e.name = args["access_log_enabled"]
-            e.name = args["snooze"]
-            e.name = args["run_once"]
+            e.access_log_enabled = args["access_log_enabled"]
+            e.snooze = args["snooze"]
+            e.run_once = args["run_once"]
         else:
             return 'assessment not found!'
         try:
