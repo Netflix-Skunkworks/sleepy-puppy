@@ -36,13 +36,13 @@ The Sleepy Puppy Burp Extension simplifies the usage of Sleepy Puppy payloads fr
 
   Sleepy Puppy: [Sleepy Puppy - Netflix OSS @ Github](https://github.com/Netflix/sleepy-puppy)
 
-  Sleepy Puppy Extension: [Sleepy Puppy Extension - Netflix OSS @ Github](https://github.com/Netflix/sleepy-puppy/burp-extension)
+  Sleepy Puppy Extension: [Sleepy Puppy Extension - Netflix OSS @ Github](https://github.com/Netflix/sleepy-puppy/tree/master/burp-extension)
   
 
 * Launch Burp
 
 * Go to: Extender > Extensions
-![Extensions Tab](https://github.com/Netflix/sleepy-puppy/burp-extension/images/burp_extensions_tab.png?raw=true)
+![Extensions Tab](https://github.com/Netflix/sleepy-puppy/tree/master/burp-extension/images/burp_extensions_tab.png?raw=true)
 
 * Click "Add"
 
@@ -51,37 +51,37 @@ The Sleepy Puppy Burp Extension simplifies the usage of Sleepy Puppy payloads fr
 ** Select "Java" for "Extension type".
 
 ** Click on the "Select file..." button and choose the sleepy_puppy-<version>.jar file for "Extension file" & click on "Open".
-![Extension Load](https://github.com/Netflix/sleepy-puppy/burp-extension/images/add_extension.png?raw=true)
+![Extension Load](https://github.com/Netflix/sleepy-puppy/tree/master/burp-extension/images/add_extension.png?raw=true)
 
 * Click "Next" and ensure that no errors were generated.
-![Successful Load](https://github.com/Netflix/sleepy-puppy/burp-extension/images/extension_loaded_without_errors.png?raw=true)
+![Successful Load](https://github.com/Netflix/sleepy-puppy/tree/master/burp-extension/images/extension_loaded_without_errors.png?raw=true)
 
 * You will see a new Burp Suite tab titled "Sleepy Puppy"
  
 ## Detailed Usage
 
 * After loading the extension, navigate to the "Sleepy Puppy" tab and setup your Sleepy Puppy Server URL and your API key. **Once you enter these two pieces of information, they get persisted locally by Burp and will be automatically reloaded the next time you start Burp Suite.**
-![SleepyPuppy Extension](https://github.com/Netflix/sleepy-puppy/burp-extension/images/sleepypuppy_extension.png?raw=true)
+![SleepyPuppy Extension](https://github.com/Netflix/sleepy-puppy/tree/master/burp-extension/images/sleepypuppy_extension.png?raw=true)
 
 * Perform Active scanning
-![Active Scanner Setup](https://github.com/Netflix/sleepy-puppy/burp-extension/images/scanner_uses_burp_payloads_followed_by_sleepypuppy_payloads.png?raw=true)
-![Active Scanner Results](https://github.com/Netflix/sleepy-puppy/burp-extension/images/scanner_found_issues.png?raw=true)
+![Active Scanner Setup](https://github.com/Netflix/sleepy-puppy/tree/master/burp-extension/images/scanner_uses_burp_payloads_followed_by_sleepypuppy_payloads.png?raw=true)
+![Active Scanner Results](https://github.com/Netflix/sleepy-puppy/tree/master/burp-extension/images/scanner_found_issues.png?raw=true)
 
 * Perform Intruder Attacks
-![Intruder Setup](https://github.com/Netflix/sleepy-puppy/burp-extension/images/intruder_attack_config_1.png?raw=true)
-![Intruder Setup](https://github.com/Netflix/sleepy-puppy/burp-extension/images/intruder_attack_config_2.png?raw=true)
-![Intruder Setup](https://github.com/Netflix/sleepy-puppy/burp-extension/images/intruder_attack_config_3.png?raw=true)
-![Intruder Setup](https://github.com/Netflix/sleepy-puppy/burp-extension/images/intruder_attack_config_4.png?raw=true)
-![Intruder Setup](https://github.com/Netflix/sleepy-puppy/burp-extension/images/intruder_attack_config_5.png?raw=true)
-![Intruder Setup](https://github.com/Netflix/sleepy-puppy/burp-extension/images/intruder_attack_config_6.png?raw=true)
-![Intruder Setup](https://github.com/Netflix/sleepy-puppy/burp-extension/images/intruder_attack_config_7.png?raw=true)
-![Intruder Results](https://github.com/Netflix/sleepy-puppy/burp-extension/images/intruder_using_sleepypuppy_payloads.png?raw=true)
-![Intruder Results](https://github.com/Netflix/sleepy-puppy/burp-extension/images/intruder_attacks_completed.png?raw=true)
+![Intruder Setup](https://github.com/Netflix/sleepy-puppy/tree/master/burp-extension/images/intruder_attack_config_1.png?raw=true)
+![Intruder Setup](https://github.com/Netflix/sleepy-puppy/tree/master/burp-extension/images/intruder_attack_config_2.png?raw=true)
+![Intruder Setup](https://github.com/Netflix/sleepy-puppy/tree/master/burp-extension/images/intruder_attack_config_3.png?raw=true)
+![Intruder Setup](https://github.com/Netflix/sleepy-puppy/tree/master/burp-extension/images/intruder_attack_config_4.png?raw=true)
+![Intruder Setup](https://github.com/Netflix/sleepy-puppy/tree/master/burp-extension/images/intruder_attack_config_5.png?raw=true)
+![Intruder Setup](https://github.com/Netflix/sleepy-puppy/tree/master/burp-extension/images/intruder_attack_config_6.png?raw=true)
+![Intruder Setup](https://github.com/Netflix/sleepy-puppy/tree/master/burp-extension/images/intruder_attack_config_7.png?raw=true)
+![Intruder Results](https://github.com/Netflix/sleepy-puppy/tree/master/burp-extension/images/intruder_using_sleepypuppy_payloads.png?raw=true)
+![Intruder Results](https://github.com/Netflix/sleepy-puppy/tree/master/burp-extension/images/intruder_attacks_completed.png?raw=true)
 
 * Modify the requests to add payload in Intruder
-![Repeater Setup](https://github.com/Netflix/sleepy-puppy/burp-extension/images/repeater_request_value_to_be_replaced_with_sleepypuppy_payload.png?raw=true)
-![Repeater Setup](https://github.com/Netflix/sleepy-puppy/burp-extension/images/repeater_request_value_replaced_with_sleepypuppy_payload.png?raw=true)
-![Repeater Results](https://github.com/Netflix/sleepy-puppy/burp-extension/images/repeater_sent_request_with_sleepypuppy_payload.png?raw=true)
+![Repeater Setup](https://github.com/Netflix/sleepy-puppy/tree/master/burp-extension/images/repeater_request_value_to_be_replaced_with_sleepypuppy_payload.png?raw=true)
+![Repeater Setup](https://github.com/Netflix/sleepy-puppy/tree/master/burp-extension/images/repeater_request_value_replaced_with_sleepypuppy_payload.png?raw=true)
+![Repeater Results](https://github.com/Netflix/sleepy-puppy/tree/master/burp-extension/images/repeater_sent_request_with_sleepypuppy_payload.png?raw=true)
 
 * Check the "Alerts" tab for error messages.
 
