@@ -72,7 +72,7 @@ The Sleepy Puppy Burp Extension simplifies the usage of Sleepy Puppy payloads fr
 
 #### Secure & Recommended option:
 
-The recommended option is to import the cert from Sleepy puppy server in to a keystore and specify the keystore location and passphrase while starting burp.
+The recommended option is to import the cert from Sleepy Puppy server in to a keystore and specify the keystore location and passphrase while starting burp.
 
 1. Visit your Sleep Puppy server and export the sleepypuppy cert using firefox in pem format
 
