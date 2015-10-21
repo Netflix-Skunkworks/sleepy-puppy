@@ -77,10 +77,14 @@ The recommended option is to import the cert from Sleepy Puppy server in to a ke
 1. Visit your Sleep Puppy server and export the sleepypuppy cert using firefox in pem format
 
 2. Import the cert in pem format in to a keystore with the command below.
-    <p><pre><code>keytool -import -file </path/to/cert.pem> -keystore <keystore.jks> -alias sleepypuppy</code></pre>
+```
+keytool -import -file </path/to/cert.pem> -keystore <keystore.jks> -alias sleepypuppy
+```
 
 3. Start Burp with the following command
-    <p><pre><code>java -Djavax.net.ssl.trustStore=</path/to/keystore.jks> -Djavax.net.ssl.trustStorePassword=<passphrase specified in previous step> -jar burp.jar</code></pre>
+```
+java -Djavax.net.ssl.trustStore=</path/to/keystore.jks> -Djavax.net.ssl.trustStorePassword=<passphrase specified in previous step> -jar burp.jar
+```
 
 #### Insecure option:
 
