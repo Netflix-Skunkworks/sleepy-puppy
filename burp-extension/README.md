@@ -48,9 +48,9 @@ The Sleepy Puppy Burp Extension simplifies the usage of Sleepy Puppy payloads fr
 
 * In the "Load Burp Extension" popup window,
 
-** Select "Java" for "Extension type".
+  * Select "Java" for "Extension type".
 
-** Click on the "Select file..." button and choose the sleepy_puppy-<version>.jar file for "Extension file" & click on "Open".
+  * Click on the "Select file..." button and choose the sleepy_puppy-<version>.jar file for "Extension file" & click on "Open".
 ![Extension Load](https://github.com/Netflix/sleepy-puppy/raw/master/burp-extension/images/add_extension.png)
 
 * Click "Next" and ensure that no errors were generated.
