@@ -9,7 +9,7 @@ The Sleepy Puppy Burp Extension simplifies the usage of Sleepy Puppy payloads fr
 ## Features
 * Integrates with an existing Sleepy Puppy Server
 * Select an existing assessment or create a new assessment
-* When an Active Scan is run, the XSS payloads from the selected Sleepy Puppy Assessment get executed after Burp's in-built XSS payloads
+* When an Active Scan is run, the XSS payloads from the selected Sleepy Puppy Assessment get executed after Burp's built-in XSS payloads
 * In Intruder, Sleepy Puppy Extension can be chosen as the payload generator for the XSS fuzzing
 * In Repeater, select a value in an exsiting request and replace with Sleepy Puppy payloads using context menu
 * Provides information about any payloads that have been triggered for the selected assessment 
@@ -22,7 +22,7 @@ The Sleepy Puppy Burp Extension simplifies the usage of Sleepy Puppy payloads fr
 * Enable the extension in Burp
 * Go to the "Sleepy Puppy" tab and enter the Sleepy Puppy Server URL and your API Key (from the adminstrator tab in Sleepy Puppy) and test connection with server
 * Create a new assessment, if needed
-* Select the assessment that is being conducted. This will populate the payloads for the assessment in to Burp
+* Select the assessment that is being conducted. This will populate the payloads for the assessment into Burp
 * Performing Active scan in Burp will automatically send Sleepy Puppy payloads
 * Go to: Intruder > Payloads; Under "Payload Sets" section, click on the "Payload Type" dropdown and Extension-Generated option as the payload type; Under "Payload Options [Extension-Generated]" section, click on "Select generator..." button. In the "Select payload generator" popup window, click the "Extension payload generator" dropdown and choose the "Sleepy Puppy" option. You can now start the attack from Intruder to deliver the Sleepy Puppy payloads.
 * From the Repeater window, select the value that you want to modify in the request. Right-clicking on the selected text, you will see "Sleepy Puppy Payloads" as a menu option. Navigating over the Sleepy Puppy Payloads" menu will list the payloads from the selected assessment. Clicking on a payload will replace the selected text in the request with the selected payload
