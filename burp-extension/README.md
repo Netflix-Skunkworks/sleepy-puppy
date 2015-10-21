@@ -82,15 +82,15 @@ keytool -import -file </path/to/cert.pem> -keystore <keystore.jks> -alias sleepy
 ```
 - You can specify the truststore information for the plugin in 2 ways.
   - Set truststore info as environmental variables and start burp as shown below
-```
-export javax.net.ssl.truststore.location=</path/to/keystore.jks>
-export javax.net.ssl.truststore.password=<passphrase specified in previous step>
-java -jar burp.jar
-```
+  ```
+  export javax.net.ssl.truststore.location=</path/to/keystore.jks>
+  export javax.net.ssl.truststore.password=<passphrase specified in previous step>
+  java -jar burp.jar
+  ```
   - Set truststore info as part of the burp startup command as shown below
-```
-java -Djavax.net.ssl.truststore.location=</path/to/keystore.jks> -Djavax.net.ssl.truststore.password=<passphrase specified in previous step> -jar burp.jar
-```
+  ```
+  java -Djavax.net.ssl.truststore.location=</path/to/keystore.jks> -Djavax.net.ssl.truststore.password=<passphrase specified in previous step> -jar burp.jar
+  ```
 
 #### Insecure option:
 
