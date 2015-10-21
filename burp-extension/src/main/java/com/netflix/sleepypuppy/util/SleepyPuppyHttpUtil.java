@@ -31,6 +31,9 @@ import java.security.NoSuchAlgorithmException;
 public class SleepyPuppyHttpUtil {
     private static final int connectionTimeoutMillis = 5000;
     private static final int socketTimeoutMillis = 5000;
+    private static final String TRUSTSTORE_LOCATION = "javax.net.ssl.truststore.location";
+    private static final String TRUSTSTORE_PASSWORD = "javax.net.ssl.truststore.password";
+
 
     public static String sendGetRequest(PrintWriter stderr, String url,
                                         String token) {
@@ -137,48 +140,56 @@ public class SleepyPuppyHttpUtil {
     private static CloseableHttpClient getSecureHttpsClient(PrintWriter stderr) {
 
         CloseableHttpClient httpClient = null;
+        String trustStoreLocation = getPropertyValue(TRUSTSTORE_LOCATION, stderr);
+        String password = getPropertyValue(TRUSTSTORE_PASSWORD, stderr);
 
-        String trustStoreLocation = System.getProperty("javax.net.ssl.trustStore");
-        if (trustStoreLocation == null || trustStoreLocation.isEmpty()) {
-            stderr.println("TrustStore location must be specified using javax.net.ssl.trustStore system property");
-            return null;
-        }
-        String password = System.getProperty("javax.net.ssl.trustStorePassword");
-        if (password == null || password.isEmpty()) {
-            stderr.println("TrustStore password must be specified using javax.net.ssl.trustStorePassword system property");
-            return null;
-        }
+        if (trustStoreLocation != null && !trustStoreLocation.isEmpty() && password != null && !password.isEmpty()) {
+            try {
+                // Load the truststore
+                KeyStore trustStore = SleepyPuppyTrustStoreUtil.getKeyStore(stderr, trustStoreLocation, password);
+                if (trustStore == null) {
+                    stderr.println("Unable to load TrustStore file");
+                }
 
-        try {
-            // Load the truststore
-            KeyStore trustStore = SleepyPuppyTrustStoreUtil.getKeyStore(stderr, trustStoreLocation, password);
-            if (trustStore == null) {
-                stderr.println("Unable to load TrustStore file");
+                final SSLContext sslContext = SSLContexts.custom()
+                        .loadTrustMaterial(trustStore)
+                        .useTLS()
+                        .build();
+
+                RequestConfig requestConfig = RequestConfig.custom()
+                        .setConnectTimeout(connectionTimeoutMillis)
+                        .setSocketTimeout(socketTimeoutMillis)
+                        .setStaleConnectionCheckEnabled(true)
+                        .build();
+
+                httpClient = HttpClients.custom()
+                        .setSSLSocketFactory(new SSLConnectionSocketFactory(sslContext,
+                                SSLConnectionSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER))
+                        .setDefaultRequestConfig(requestConfig)
+                        .setMaxConnPerRoute(4)
+                        .setMaxConnTotal(24)
+                        .build();
+
+            } catch (KeyStoreException | KeyManagementException | NoSuchAlgorithmException e) {
+                stderr.println("Error while creating a secure HTTP Client" + e.getMessage());
             }
-
-            final SSLContext sslContext = SSLContexts.custom()
-                    .loadTrustMaterial(trustStore)
-                    .useTLS()
-                    .build();
-
-            RequestConfig requestConfig = RequestConfig.custom()
-                    .setConnectTimeout(connectionTimeoutMillis)
-                    .setSocketTimeout(socketTimeoutMillis)
-                    .setStaleConnectionCheckEnabled(true)
-                    .build();
-
-            httpClient = HttpClients.custom()
-                    .setSSLSocketFactory(new SSLConnectionSocketFactory(sslContext,
-                            SSLConnectionSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER))
-                    .setDefaultRequestConfig(requestConfig)
-                    .setMaxConnPerRoute(4)
-                    .setMaxConnTotal(24)
-                    .build();
-
-        } catch (KeyStoreException | KeyManagementException | NoSuchAlgorithmException e) {
-            stderr.println("Error while creating a secure HTTP Client" + e.getMessage());
         }
         return httpClient;
+    }
+
+    private static String getPropertyValue(String propertyName, PrintWriter stderr) {
+        String value = null;
+
+        // Get property value from VM Options (set using "-Dproperty=value" in command line as part of burp startup command)
+        value = System.getProperty(propertyName);
+        if (value == null || value.isEmpty()) {
+            // Get property value from Environment variable (set using "export property=value" in command line)
+            value = System.getenv(propertyName);
+            if (value == null || value.isEmpty()) {
+                stderr.println(propertyName + " must be set as either an environment variable or a jvm startup option");
+            }
+        }
+        return value;
     }
 
     private static void closeResources(PrintWriter stderr, CloseableHttpClient httpClient,
