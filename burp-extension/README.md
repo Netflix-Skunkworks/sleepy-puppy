@@ -28,6 +28,44 @@ The Sleepy Puppy Burp Extension simplifies the usage of Sleepy Puppy payloads fr
 * From the Repeater window, select the value that you want to modify in the request. Right-clicking on the selected text, you will see "Sleepy Puppy Payloads" as a menu option. Navigating over the Sleepy Puppy Payloads" menu will list the payloads from the selected assessment. Clicking on a payload will replace the selected text in the request with the selected payload
 * Any failure messages will be posted to the "Alerts" tab
 
+## HTTPS Connection
+
+* If your Sleepy Puppy server is running over HTTPS, you would need to inform the burp JVM to trust the CA that signed your Sleepy Puppy server certificate.
+
+* There are 2 ways to do this & both involve starting burp will extra command-line properties.
+
+
+#### Secure & Recommended option:
+
+The recommended option is to import the cert from Sleepy Puppy server in to a keystore and specify the keystore location and passphrase while starting burp.
+
+- Visit your Sleep Puppy server and export the sleepypuppy cert using firefox in pem format
+
+- Import the cert in pem format in to a keystore with the command below.
+```
+keytool -import -file </path/to/cert.pem> -keystore <keystore.jks> -alias sleepypuppy
+```
+- You can specify the truststore information for the plugin in 2 ways.
+  - Set truststore info as environmental variables and start burp as shown below
+  ```
+  export javax.net.ssl.truststore.location=</path/to/keystore.jks>
+  export javax.net.ssl.truststore.password=<passphrase specified in previous step>
+  java -jar burp.jar
+  ```
+  - Set truststore info as part of the burp startup command as shown below
+  ```
+  java -Djavax.net.ssl.truststore.location=</path/to/keystore.jks> -Djavax.net.ssl.truststore.password=<passphrase specified in previous step> -jar burp.jar
+  ```
+
+#### Insecure option:
+
+This option involves setting a flag for the sleepy puppy extension to trust all certs.
+
+- Start Burp with the following command
+```
+java -Dsleepy.puppy.trust.all.certs=true -jar burp.jar
+```
+
 ## Installation
 
 * Download dependencies
@@ -62,44 +100,6 @@ The Sleepy Puppy Burp Extension simplifies the usage of Sleepy Puppy payloads fr
 
 * After loading the extension, navigate to the "Sleepy Puppy" tab and setup your Sleepy Puppy Server URL and your API key. **Once you enter these two pieces of information, they get persisted locally by Burp and will be automatically reloaded the next time you start Burp Suite.**
 ![SleepyPuppy Extension](https://github.com/Netflix/sleepy-puppy/raw/master/burp-extension/images/sleepypuppy_extension.png)
-
-## HTTPS Connection
-
-* If your Sleepy Puppy server is running over HTTPS, you would need to inform the burp JVM to trust the CA that signed your Sleepy Puppy server certificate.
-
-* There are 2 ways to do this & both involve restarting burp will extra command-line properties.
-
-
-#### Secure & Recommended option:
-
-The recommended option is to import the cert from Sleepy Puppy server in to a keystore and specify the keystore location and passphrase while starting burp.
-
-- Visit your Sleep Puppy server and export the sleepypuppy cert using firefox in pem format
-
-- Import the cert in pem format in to a keystore with the command below.
-```
-keytool -import -file </path/to/cert.pem> -keystore <keystore.jks> -alias sleepypuppy
-```
-- You can specify the truststore information for the plugin in 2 ways.
-  - Set truststore info as environmental variables and start burp as shown below
-  ```
-  export javax.net.ssl.truststore.location=</path/to/keystore.jks>
-  export javax.net.ssl.truststore.password=<passphrase specified in previous step>
-  java -jar burp.jar
-  ```
-  - Set truststore info as part of the burp startup command as shown below
-  ```
-  java -Djavax.net.ssl.truststore.location=</path/to/keystore.jks> -Djavax.net.ssl.truststore.password=<passphrase specified in previous step> -jar burp.jar
-  ```
-
-#### Insecure option:
-
-This option involves setting a flag for the sleepy puppy extension to trust all certs.
-
-- Start Burp with the following command
-```
-java -Dsleepy.puppy.trust.all.certs=true -jar burp.jar
-```
 
 ## Active Scanner
 
