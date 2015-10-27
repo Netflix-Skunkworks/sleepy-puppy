@@ -31,8 +31,9 @@ import java.security.NoSuchAlgorithmException;
 public class SleepyPuppyHttpUtil {
     private static final int connectionTimeoutMillis = 5000;
     private static final int socketTimeoutMillis = 5000;
-    private static final String TRUSTSTORE_LOCATION = "javax.net.ssl.truststore.location";
-    private static final String TRUSTSTORE_PASSWORD = "javax.net.ssl.truststore.password";
+    private static final String TRUSTSTORE_LOCATION = "SLEEPYPUPPY_TRUSTSTORE_LOCATION";
+    private static final String TRUSTSTORE_PASSWORD = "SLEEPYPUPPY_TRUSTSTORE_PASSWORD";
+    private static final String INSECURE_HTTPS = "SLEEPYPUPPY_TRUST_ALL_CERTS";
 
 
     public static String sendGetRequest(PrintWriter stderr, String url,
@@ -93,7 +94,7 @@ public class SleepyPuppyHttpUtil {
 
     private static CloseableHttpClient getAppropriateHttpClient(PrintWriter stderr, String url) {
         if (url.startsWith("https:")) {
-            String insecure = System.getProperty("sleepy.puppy.trust.all.certs");
+            String insecure = System.getProperty(INSECURE_HTTPS);
             if (insecure != null && !insecure.isEmpty() && insecure.equalsIgnoreCase("true")) {
                 return getInSecureHttpsClient(stderr);
             } else {

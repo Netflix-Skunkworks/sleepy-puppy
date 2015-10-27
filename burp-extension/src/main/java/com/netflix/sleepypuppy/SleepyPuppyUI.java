@@ -52,7 +52,7 @@ public class SleepyPuppyUI {
         sleepyPuppyServerLocationText.setText(callbacks.loadExtensionSetting(
                 SleepyPuppyConstants.PROPERTY_SLEEPY_PUPPY_URL));
         callbacks.customizeUiComponent(sleepyPuppyServerLocationText);
-        sleepyPuppyServerLocationText.setLocation(150, 10);
+        sleepyPuppyServerLocationText.setLocation(200, 10);
         sleepyPuppyServerLocationText.setSize(300, 30);
         panel.add(sleepyPuppyServerLocationText);
 
@@ -68,7 +68,7 @@ public class SleepyPuppyUI {
                     SleepyPuppyConstants.PROPERTY_SLEEPY_PUPPY_USER_API_KEY));
         }
         callbacks.customizeUiComponent(sleepyPuppyUserApiKeyText);
-        sleepyPuppyUserApiKeyText.setLocation(150, 50);
+        sleepyPuppyUserApiKeyText.setLocation(200, 50);
         sleepyPuppyUserApiKeyText.setSize(300, 30);
         panel.add(sleepyPuppyUserApiKeyText);
 
@@ -117,7 +117,7 @@ public class SleepyPuppyUI {
             }
         }
         callbacks.customizeUiComponent(assessmentList);
-        assessmentList.setLocation(150, 140);
+        assessmentList.setLocation(200, 140);
         assessmentList.setSize(300, 30);
         sleepyPuppyConnector.refreshDataElements(assessmentList, payloadList, accessLogCountLabel,
                 captureCountLabel, genericCollectorCountLabel);
@@ -137,7 +137,7 @@ public class SleepyPuppyUI {
         panel.add(payloadLabel);
 
         callbacks.customizeUiComponent(payloadList);
-        payloadList.setLocation(150, 180);
+        payloadList.setLocation(200, 180);
         payloadList.setSize(300, 30);
         panel.add(payloadList);
 
@@ -171,7 +171,7 @@ public class SleepyPuppyUI {
 
         JTextField newAssessmentName = new JTextField();
         callbacks.customizeUiComponent(newAssessmentName);
-        newAssessmentName.setLocation(150, 340);
+        newAssessmentName.setLocation(200, 340);
         newAssessmentName.setSize(300, 30);
         panel.add(newAssessmentName);
 
@@ -184,8 +184,8 @@ public class SleepyPuppyUI {
 
         JButton createAssessmentButton = new JButton("Create New Assessment");
         callbacks.customizeUiComponent(createAssessmentButton);
-        createAssessmentButton.setLocation(460, 340);
-        createAssessmentButton.setSize(300, 30);
+        createAssessmentButton.setLocation(550, 340);
+        createAssessmentButton.setSize(200, 30);
         createAssessmentButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (newAssessmentName.getText() != null && !newAssessmentName.getText().isEmpty()) {
@@ -226,7 +226,7 @@ public class SleepyPuppyUI {
 
         JTextField newPayloadValue = new JTextField();
         callbacks.customizeUiComponent(newPayloadValue);
-        newPayloadValue.setLocation(150, 380);
+        newPayloadValue.setLocation(200, 380);
         newPayloadValue.setSize(300, 30);
         panel.add(newPayloadValue);
 
@@ -239,8 +239,8 @@ public class SleepyPuppyUI {
 
         JButton createPayloadButton = new JButton("Create New Payload");
         callbacks.customizeUiComponent(createPayloadButton);
-        createPayloadButton.setLocation(460, 380);
-        createPayloadButton.setSize(300, 30);
+        createPayloadButton.setLocation(550, 380);
+        createPayloadButton.setSize(200, 30);
         createPayloadButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (newPayloadValue.getText() != null && !newPayloadValue.getText().isEmpty()) {
