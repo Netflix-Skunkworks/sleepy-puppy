@@ -43,18 +43,18 @@ The recommended option is to import the cert from Sleepy Puppy server in to a ke
 
 - Import the cert in pem format in to a keystore with the command below.
 ```
-keytool -import -file </path/to/cert.pem> -keystore <keystore.jks> -alias sleepypuppy
+keytool -import -file </path/to/cert.pem> -keystore sleepypuppy_truststore.jks -alias sleepypuppy
 ```
 - You can specify the truststore information for the plugin in 2 ways.
   - Set truststore info as environmental variables and start burp as shown below
   ```
-  export javax.net.ssl.truststore.location=</path/to/keystore.jks>
-  export javax.net.ssl.truststore.password=<passphrase specified in previous step>
+  export SLEEPYPUPPY_TRUSTSTORE_LOCATION=</path/to/sleepypuppy_truststore.jks>
+  export SLEEPYPUPPY_TRUSTSTORE_PASSWORD=<passphrase provided while creating the truststore using keytool command above>
   java -jar burp.jar
   ```
   - Set truststore info as part of the burp startup command as shown below
   ```
-  java -Djavax.net.ssl.truststore.location=</path/to/keystore.jks> -Djavax.net.ssl.truststore.password=<passphrase specified in previous step> -jar burp.jar
+  java -DSLEEPYPUPPY_TRUSTSTORE_PASSWORD=</path/to/sleepypuppy_truststore.jks> -DSLEEPYPUPPY_TRUSTSTORE_PASSWORD=<passphrase provided while creating the truststore using keytool command above> -jar burp.jar
   ```
 
 #### Insecure option:
@@ -63,7 +63,7 @@ This option involves setting a flag for the sleepy puppy extension to trust all 
 
 - Start Burp with the following command
 ```
-java -Dsleepy.puppy.trust.all.certs=true -jar burp.jar
+java -DSLEEPYPUPPY_TRUST_ALL_CERTS=true -jar burp.jar
 ```
 
 ## Installation
