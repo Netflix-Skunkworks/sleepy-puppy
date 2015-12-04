@@ -46,7 +46,7 @@ def x_collector(payload=1):
         if the_assessment.access_log_enabled:
             referrer = request.headers.get("Referrer", None)
             user_agent = request.headers.get("User-Agent", None)
-            ip_address = request.remote_addr
+            ip_address = request.access_route[-1]
             client_info = AccessLog(
                 the_payload.id, the_assessment.name, referrer, user_agent, ip_address)
             db.session.add(client_info)
