@@ -33,7 +33,7 @@ class AccessLogView(ModelView):
 
     column_filters = ('id', 'payload', 'assessment', 'ip_address', 'user_agent', 'referrer')
 
-    # Disable unnneeded CRUD operations
+    # Disable unneeded CRUD operations
     can_create = False
     can_edit = False
 

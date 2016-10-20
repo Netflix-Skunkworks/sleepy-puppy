@@ -6,7 +6,7 @@ class GenericCollector(db.Model):
     """
     Puppyscript model contains the following parameters:
 
-    name = name of javascriopt file.
+    name = name of javascript file.
     code = code that will be executed when a sleepy puppy payload is executed
     notes = notes
 
@@ -34,7 +34,7 @@ class GenericCollector(db.Model):
         self.url = url
         self.referrer = referrer
         self.data = data
-        # Set datetime when a capture is recieved
+        # Set datetime when a capture is received
         if pub_date is None:
             pub_date = str(datetime.datetime.now())
         self.pub_date = pub_date

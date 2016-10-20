@@ -20,14 +20,14 @@ class Capture(db.Model):
     """
     Capture model contains the following parameters:
 
-    assessment = assessment name(s) assocaited with capture
+    assessment = assessment name(s) associated with capture
     url = url where cross-site scripting was triggered
     referrer = referrer string of request
     cookies = any cookies not containing the HttpOnly flag from request
     user_agent = user-agent string
     payload = to be removed
     screenshot = screenshot identifier
-    pub_date = Date with which the capature was recieved
+    pub_date = Date with which the capture was received
     """
     __tablename__ = 'captures'
 
@@ -56,7 +56,7 @@ class Capture(db.Model):
         self.payload = payload
         self.screenshot = screenshot
         self.dom = bs(dom).prettify()
-        # Set datetime when a capture is recieved
+        # Set datetime when a capture is received
         if pub_date is None:
             pub_date = str(datetime.datetime.now())
         self.pub_date = pub_date

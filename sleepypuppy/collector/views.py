@@ -29,7 +29,7 @@ from urlparse import urlparse
 @app.route('/x', methods=['GET'])
 def x_collector(payload=1):
     """
-    Determine the payload assocaited with the request.
+    Determine the payload associated with the request.
     If accesslog is enabled for the payload, record the event
     and email users subscribed to the payload's assessment.
     """
@@ -81,7 +81,7 @@ def collector(payload=1):
         app.logger.warn(err)
     # Render the template and include payload, hostname, callback_protocol,
     # assessment.
-    # If you need to expose additiional server side
+    # If you need to expose additional server side
     # information for your JavaScripts, do it here.
     try:
         headers = {'Content-Type': 'text/javascript'}
@@ -125,7 +125,7 @@ def email_subscription(payload, the_assessment, url, client_info, model):
 
     import cgi
     if model == "capture":
-        subject = "[Sleepy Puppy] - Capture Recieved From: {}".format(
+        subject = "[Sleepy Puppy] - Capture Received From: {}".format(
             cgi.escape(url, quote=True)
         )
         html = "<b>Associated Assessment: </b>{}<br/>".format(
@@ -148,7 +148,7 @@ def email_subscription(payload, the_assessment, url, client_info, model):
             payload, the_assessment.name)
 
     elif model == "access_log":
-        subject = "[Sleepy Puppy] - Access Log Request Recieved For Assessment(s): {}".format(
+        subject = "[Sleepy Puppy] - Access Log Request Received For Assessment(s): {}".format(
             cgi.escape(the_assessment.name, quote=True)
         )
         html = "<b>Associated Assessment: </b>{}<br/>".format(
@@ -170,7 +170,7 @@ def email_subscription(payload, the_assessment, url, client_info, model):
             payload, the_assessment.name)
 
     elif model == "generic_collector":
-        subject = "[Sleepy Puppy] - Generic Collector Recieved From: {}".format(
+        subject = "[Sleepy Puppy] - Generic Collector Received From: {}".format(
             cgi.escape(client_info.url, quote=True)
         )
         html = "<b>Associated Assessment: </b>{}<br/>".format(
@@ -192,7 +192,7 @@ def email_subscription(payload, the_assessment, url, client_info, model):
             payload,
             the_assessment.name)
 
-    # If there are people to email, email them that a capture was recieved
+    # If there are people to email, email them that a capture was received
     if email_list:
         if app.config["EMAILS_USE_SES"]:
             import boto.ses

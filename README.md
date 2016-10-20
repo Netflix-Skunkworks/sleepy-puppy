@@ -46,7 +46,7 @@ V0.3 "Netflix OSS Release" - 8/31/2015
 * Additional error logging has been integrated
 * Better exception handling throughout the application
 * New API endpoints for all new models (Javascript, Generic Collector, Access Log)
-* New setup directive (setup_sleepy_puppy) creates example javascrpts, payloads, and an assessment.
+* New setup directive (setup_sleepy_puppy) creates example javascript, payloads, and an assessment.
 
 V0.2 "OWASP Beta Release" - 7/9/2015 (https://github.com/sbehrens/sleepy-puppy)
 * Updated a number of third party dependencies
@@ -56,7 +56,7 @@ V0.2 "OWASP Beta Release" - 7/9/2015 (https://github.com/sbehrens/sleepy-puppy)
 * Allowed domains config directive allows users to whitelist which domains to log captures for
 * Callback configuration settings for hostname and protocol now supported
 * PEP 8 changes (thanks @monkey_security)
-* manage.py now supports a new commnad 'create_bootstrap_assessment' which adds a number of example payloads and an example assessment
+* manage.py now supports a new command 'create_bootstrap_assessment' which adds a number of example payloads and an example assessment
 * Added comprehensive Wiki documentation
 
 V0.1 Alpha - 2/26/2014

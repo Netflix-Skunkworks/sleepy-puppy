@@ -27,7 +27,7 @@ class CaptureView(ModelView):
     # CSRF protection
     form_base_class = Form
 
-    # Check if user is autheticated
+    # Check if user is authenticated
     def is_accessible(self):
         return login.current_user.is_authenticated()
 
@@ -98,7 +98,7 @@ class CaptureView(ModelView):
     # Delete screenshots on mass delete
     def delete_screenshots(self, model):
         """
-        Remove screenshot assocaited with Capture model
+        Remove screenshot associated with Capture model
         """
         try:
             os.remove("uploads/{}.png".format(model.screenshot))

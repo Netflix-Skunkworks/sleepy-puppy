@@ -36,11 +36,11 @@ class UserView(ModelView):
     # Form tweaks and validations
     form_args = dict(
         email=dict(
-            description='Enter email address to recieve notifications when captures are recieved',
+            description='Enter email address to receive notifications when captures are received',
             validators=[validators.required(), validators.email()]
         ),
         assessments=dict(
-            description='Subscribe to assessments to recieve notifications',
+            description='Subscribe to assessments to receive notifications',
             validators=[validators.required()]
         )
     )
