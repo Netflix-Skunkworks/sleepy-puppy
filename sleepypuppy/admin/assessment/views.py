@@ -78,7 +78,7 @@ class AssessmentView(ModelView):
     """
     ModelView override of Flask Admin for Assessments.
     """
-    # CSRF Protecdtion
+    # CSRF Protection
     form_base_class = Form
 
     # Check if user is authenticated
