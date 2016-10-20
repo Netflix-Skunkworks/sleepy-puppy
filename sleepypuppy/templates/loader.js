@@ -13,7 +13,7 @@
      limitations under the License.
 */
 console.log("Sleepy Puppy is a Cross-site Scripting Payload Management Framework")
-console.log("Sleepy Puppy JavaScripts will execute in the order they were configured, but may finish execution at different times depending on if the JavaScripts are asyncronous.")
+console.log("Sleepy Puppy JavaScripts will execute in the order they were configured, but may finish execution at different times depending on if the JavaScripts are asynchronous.")
 console.log("More information on Sleepy Puppy can be found here: https://github.com/Netflix/sleepy-puppy")
 // Always load jQuery regardless of Javascripts
 if (typeof jQuery === 'undefined') {
