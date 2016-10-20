@@ -54,7 +54,7 @@ class Puppyscript(db.Model):
         """
         Return Assessment model as JSON object
 
-        If you need to expose addtional variables to your Puppyscript
+        If you need to expose additional variables to your Puppyscript
         templates, this is the place to do it.
         """
 

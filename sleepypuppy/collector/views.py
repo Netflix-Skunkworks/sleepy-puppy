@@ -81,7 +81,7 @@ def collector(payload=1):
         app.logger.warn(err)
     # Render the template and include payload, hostname, callback_protocol,
     # assessment.
-    # If you need to expose additiional server side
+    # If you need to expose additional server side
     # information for your JavaScripts, do it here.
     try:
         headers = {'Content-Type': 'text/javascript'}
