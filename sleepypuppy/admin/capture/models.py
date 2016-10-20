@@ -20,7 +20,7 @@ class Capture(db.Model):
     """
     Capture model contains the following parameters:
 
-    assessment = assessment name(s) assocaited with capture
+    assessment = assessment name(s) associated with capture
     url = url where cross-site scripting was triggered
     referrer = referrer string of request
     cookies = any cookies not containing the HttpOnly flag from request

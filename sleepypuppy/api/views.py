@@ -129,7 +129,7 @@ class AssessmentView(Resource):
         e = Assessment.query.filter(Assessment.id == id).first()
         if e is not None:
             try:
-                # Delete everything asssociated with Assessment
+                # Delete everything associated with Assessment
                 Capture.query.filter_by(assessment=e.name).delete()
                 AccessLog.query.filter_by(assessment=e.name).delete()
                 GenericCollector.query.filter_by(assessment=e.name).delete()

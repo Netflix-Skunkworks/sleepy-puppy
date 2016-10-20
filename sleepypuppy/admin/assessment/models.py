@@ -19,7 +19,7 @@ class Assessment(db.Model):
     Assessment model contains the following parameters:
 
     name = name of the assessment you are working on.
-    payloads = payloads assocaited with the assessment
+    payloads = payloads associated with the assessment
     """
     __tablename__ = 'assessments'
 

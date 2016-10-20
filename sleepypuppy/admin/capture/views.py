@@ -98,7 +98,7 @@ class CaptureView(ModelView):
     # Delete screenshots on mass delete
     def delete_screenshots(self, model):
         """
-        Remove screenshot assocaited with Capture model
+        Remove screenshot associated with Capture model
         """
         try:
             os.remove("uploads/{}.png".format(model.screenshot))

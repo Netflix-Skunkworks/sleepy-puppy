@@ -29,7 +29,7 @@ from urlparse import urlparse
 @app.route('/x', methods=['GET'])
 def x_collector(payload=1):
     """
-    Determine the payload assocaited with the request.
+    Determine the payload associated with the request.
     If accesslog is enabled for the payload, record the event
     and email users subscribed to the payload's assessment.
     """
