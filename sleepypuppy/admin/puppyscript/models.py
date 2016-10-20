@@ -21,7 +21,7 @@ class Puppyscript(db.Model):
     """
     Puppyscript model contains the following parameters:
 
-    name = name of javascriopt file.
+    name = name of javascript file.
     code = code that will be executed when a sleepy puppy payload is executed
     notes = notes
 
