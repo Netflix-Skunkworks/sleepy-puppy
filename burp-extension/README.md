@@ -11,7 +11,7 @@ The Sleepy Puppy Burp Extension simplifies the usage of Sleepy Puppy payloads fr
 * Select an existing assessment or create a new assessment
 * When an Active Scan is run, the XSS payloads from the selected Sleepy Puppy Assessment get executed after Burp's built-in XSS payloads
 * In Intruder, Sleepy Puppy Extension can be chosen as the payload generator for the XSS fuzzing
-* In Repeater, select a value in an exsiting request and replace with Sleepy Puppy payloads using context menu
+* In Repeater, select a value in an existing request and replace with Sleepy Puppy payloads using context menu
 * Provides information about any payloads that have been triggered for the selected assessment 
 * Create new payload from the extension
 
