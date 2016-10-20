@@ -27,7 +27,7 @@ class Capture(db.Model):
     user_agent = user-agent string
     payload = to be removed
     screenshot = screenshot identifier
-    pub_date = Date with which the capature was recieved
+    pub_date = Date with which the capture was recieved
     """
     __tablename__ = 'captures'
 
