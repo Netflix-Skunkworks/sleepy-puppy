@@ -16,7 +16,7 @@ from sleepypuppy import db
 
 class Assessment(db.Model):
     """
-    Assessemt model contains the following parameters:
+    Assessment model contains the following parameters:
 
     name = name of the assessment you are working on.
     payloads = payloads assocaited with the assessment
