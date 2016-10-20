@@ -125,7 +125,7 @@ def email_subscription(payload, the_assessment, url, client_info, model):
 
     import cgi
     if model == "capture":
-        subject = "[Sleepy Puppy] - Capture Recieved From: {}".format(
+        subject = "[Sleepy Puppy] - Capture Received From: {}".format(
             cgi.escape(url, quote=True)
         )
         html = "<b>Associated Assessment: </b>{}<br/>".format(
@@ -148,7 +148,7 @@ def email_subscription(payload, the_assessment, url, client_info, model):
             payload, the_assessment.name)
 
     elif model == "access_log":
-        subject = "[Sleepy Puppy] - Access Log Request Recieved For Assessment(s): {}".format(
+        subject = "[Sleepy Puppy] - Access Log Request Received For Assessment(s): {}".format(
             cgi.escape(the_assessment.name, quote=True)
         )
         html = "<b>Associated Assessment: </b>{}<br/>".format(
@@ -170,7 +170,7 @@ def email_subscription(payload, the_assessment, url, client_info, model):
             payload, the_assessment.name)
 
     elif model == "generic_collector":
-        subject = "[Sleepy Puppy] - Generic Collector Recieved From: {}".format(
+        subject = "[Sleepy Puppy] - Generic Collector Received From: {}".format(
             cgi.escape(client_info.url, quote=True)
         )
         html = "<b>Associated Assessment: </b>{}<br/>".format(
@@ -192,7 +192,7 @@ def email_subscription(payload, the_assessment, url, client_info, model):
             payload,
             the_assessment.name)
 
-    # If there are people to email, email them that a capture was recieved
+    # If there are people to email, email them that a capture was received
     if email_list:
         if app.config["EMAILS_USE_SES"]:
             import boto.ses

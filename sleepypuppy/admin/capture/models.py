@@ -27,7 +27,7 @@ class Capture(db.Model):
     user_agent = user-agent string
     payload = to be removed
     screenshot = screenshot identifier
-    pub_date = Date with which the capture was recieved
+    pub_date = Date with which the capture was received
     """
     __tablename__ = 'captures'
 
@@ -56,7 +56,7 @@ class Capture(db.Model):
         self.payload = payload
         self.screenshot = screenshot
         self.dom = bs(dom).prettify()
-        # Set datetime when a capture is recieved
+        # Set datetime when a capture is received
         if pub_date is None:
             pub_date = str(datetime.datetime.now())
         self.pub_date = pub_date

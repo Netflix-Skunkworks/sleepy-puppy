@@ -22,7 +22,7 @@ class User(db.Model):
     User model contains the following parameters used for email notifications:
 
     email = email address to send capture notifications to.
-    assessments = list of assessments the email address will recieve captures for.
+    assessments = list of assessments the email address will receive captures for.
 
     Has an association of assessments with users.
     """
