@@ -65,7 +65,7 @@ from sleepypuppy.admin.admin.models import Administrator
 
 def require_appkey(view_function):
     """
-    Decorator for api using token based authetication
+    Decorator for api using token based authentication
     """
     @wraps(view_function)
     def decorated_function(*args, **kwargs):
