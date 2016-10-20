@@ -56,7 +56,7 @@ V0.2 "OWASP Beta Release" - 7/9/2015 (https://github.com/sbehrens/sleepy-puppy)
 * Allowed domains config directive allows users to whitelist which domains to log captures for
 * Callback configuration settings for hostname and protocol now supported
 * PEP 8 changes (thanks @monkey_security)
-* manage.py now supports a new commnad 'create_bootstrap_assessment' which adds a number of example payloads and an example assessment
+* manage.py now supports a new command 'create_bootstrap_assessment' which adds a number of example payloads and an example assessment
 * Added comprehensive Wiki documentation
 
 V0.1 Alpha - 2/26/2014
