@@ -1,6 +1,6 @@
 {% extends 'admin/master.html' %}
 {% import 'admin/lib.html' as lib with context %}
-{% import 'admin/actions.html' as actionslib with context %}
+{% import 'admin/actions.html' as actionlib with context %}
 
 {% block body %}
     {% block breadcrums %}
@@ -114,19 +114,19 @@
         {% endif %}
         {% if actions %}
         <div class="btn-group">
-            {{ actionslib.dropdown(actions, 'dropdown-toggle btn btn-default btn-large') }}
+            {{ actionlib.dropdown(actions, 'dropdown-toggle btn btn-default btn-large') }}
         </div>
         {% endif %}
     </div>
     {% endblock %}
     {% block actions %}
-    {{ actionslib.form(actions, get_url('.action_view')) }}
+    {{ actionlib.form(actions, get_url('.action_view')) }}
     {% endblock %}
 {% endblock %}
 
 {% block tail %}
     {{ super() }}
-    {{ actionslib.script(_gettext('Please select at least one file.'),
+    {{ actionlib.script(_gettext('Please select at least one file.'),
                       actions,
                       actions_confirmation) }}
 {% endblock %}
