@@ -50,13 +50,13 @@ def ssl_required(fn):
 # CSRF Protection
 csrf_protect = flask_wtf.CsrfProtect(app)
 
-# Initalize DB object
+# Initialize DB object
 db = SQLAlchemy(app)
 
-# Initalize Bcrypt object for password hashing
+# Initialize Bcrypt object for password hashing
 bcrypt = Bcrypt(app)
 
-# Initalize flask mail object for email notifications
+# Initialize flask mail object for email notifications
 flask_mail = Mail(app)
 
 # Decorator for Token Auth on API Requests
@@ -83,13 +83,13 @@ def require_appkey(view_function):
             abort(401)
     return decorated_function
 
-# Initalize the Flask API
+# Initialize the Flask API
 flask_api = Api(app, decorators=[csrf_protect.exempt, require_appkey])
 
 
 def init_login():
     """
-    Initalize the Flask Login manager
+    Initialize the Flask Login manager
     """
     login_manager = login.LoginManager()
     login_manager.init_app(app)
@@ -108,7 +108,7 @@ flask_admin = Admin(app,
                     base_template='admin/base.html',
                     template_mode='bootstrap3')
 
-# Intalize the login manager for sleepy puppy
+# Initialize the login manager for sleepy puppy
 init_login()
 
 # Import the collector which is used to collect capture information
@@ -117,7 +117,7 @@ from collector import views
 # Import the screenshot upload handler
 from upload import upload  # noqa
 
-# Initalize all Flask API views
+# Initialize all Flask API views
 from api.views import PuppyscriptAssociations, CaptureView, CaptureViewList, PuppyscriptView, PuppyscriptViewList, PayloadView, PayloadViewList, AccessLogView, AccessLogViewList, AssessmentView, AssessmentViewList, GenericCollectorView, GenericCollectorViewList, AssessmentPayloads  # noqa
 
 flask_api.add_resource(AssessmentViewList, '/api/assessments')
@@ -135,7 +135,7 @@ flask_api.add_resource(GenericCollectorView, '/api/generic_collector/<int:id>')
 flask_api.add_resource(PuppyscriptAssociations, '/api/puppyscript_loader/<int:id>')
 flask_api.add_resource(AssessmentPayloads, '/api/assessment_payloads/<int:id>')
 
-# Initalize all Flask Admin dashboard views
+# Initialize all Flask Admin dashboard views
 from admin.capture.views import CaptureView
 from admin.access_log.views import AccessLogView
 from admin.puppyscript.views import PuppyscriptView
