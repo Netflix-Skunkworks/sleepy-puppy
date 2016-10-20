@@ -27,7 +27,7 @@ class CaptureView(ModelView):
     # CSRF protection
     form_base_class = Form
 
-    # Check if user is autheticated
+    # Check if user is authenticated
     def is_accessible(self):
         return login.current_user.is_authenticated()
 

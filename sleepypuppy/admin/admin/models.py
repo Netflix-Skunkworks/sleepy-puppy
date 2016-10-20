@@ -18,7 +18,7 @@ from os import urandom
 
 class Administrator(db.Model):
     """
-    Admin model contols how users autheticate to Sleepy Puppy
+    Admin model contols how users authenticate to Sleepy Puppy
     The model also automatically generates API keys for administrators.
 
     login = account for authetication
