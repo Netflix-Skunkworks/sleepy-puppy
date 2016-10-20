@@ -22,7 +22,7 @@ class Payload(db.Model):
     payload = payload used in xss injection testing.
     url = url where payload is submitted to
     method = method of request to facilitate xss testing
-    paramater = parameter which contains the payload
+    parameter = parameter which contains the payload
     notes = notes
 
     Payload provides primary key to Capture, which stores
