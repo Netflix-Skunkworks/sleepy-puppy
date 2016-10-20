@@ -265,7 +265,7 @@ class PayloadViewList(Resource):
 class PuppyscriptAssociations(Resource):
 
     """
-    API Provides GET operations for retriving Puppyscripts associated with payload
+    API Provides GET operations for retrieving Puppyscripts associated with payload
 
     Methods:
     GET
@@ -292,7 +292,7 @@ class PuppyscriptAssociations(Resource):
 class AssessmentPayloads(Resource):
 
     """
-    API Provides GET operation for retriving Payloads associated with an Assessment
+    API Provides GET operation for retrieving Payloads associated with an Assessment
 
     Methods:
     GET
