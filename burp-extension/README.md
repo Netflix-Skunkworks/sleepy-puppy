@@ -20,7 +20,7 @@ The Sleepy Puppy Burp Extension simplifies the usage of Sleepy Puppy payloads fr
 
 ## Usage
 * Enable the extension in Burp
-* Go to the "Sleepy Puppy" tab and enter the Sleepy Puppy Server URL and your API Key (from the adminstrator tab in Sleepy Puppy) and test connection with server
+* Go to the "Sleepy Puppy" tab and enter the Sleepy Puppy Server URL and your API Key (from the administrator tab in Sleepy Puppy) and test connection with server
 * Create a new assessment, if needed
 * Select the assessment that is being conducted. This will populate the payloads for the assessment into Burp
 * Performing Active scan in Burp will automatically send Sleepy Puppy payloads
