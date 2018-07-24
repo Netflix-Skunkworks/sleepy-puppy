@@ -3,7 +3,7 @@ DEPRECATED
 *July 24th, 2018*
 
 
-So many amazing tools have come out since the release of Sleepy Puppy that streamlines the original goals of the project.  We're currently leaving Sleepy Puppy online but are not planning on adding any new features or addressing issues/pull requests.  If you are interested in maintaining this project, please reach out to me (sbehrens@netflix.com).
+So many amazing tools have come out since the release of Sleepy Puppy that streamline the original goals of the project.  We're currently leaving Sleepy Puppy code online but are not planning on adding any new features or addressing issues/pull requests.  If you are interested in maintaining this project, please reach out to me (sbehrens@netflix.com).
 
 -Scott 
 
